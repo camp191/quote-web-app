@@ -46,8 +46,8 @@ class ExampleSlider extends React.Component {
                 <Slider {...settings}>
                     {sliderData.map((list) => {
                         return (
-                            <div>
-                                <SliderList 
+                            <div key={list.name}>
+                                <SliderList
                                     name={list.name}
                                     description={list.description}
                                     avatar={list.avatar}

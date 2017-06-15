@@ -10,6 +10,10 @@
   color: #333;
 }
 
+.container-page-not-found {
+  text-align: center;
+}
+
 .member-header {
   font-size: 20px;
   margin-top: 16px;

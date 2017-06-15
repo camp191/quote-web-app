@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Paper from 'material-ui/Paper';
 
-import Signup from './Signup'
-import Login from './Login'
+import SignupPage from '../../containers/SignupPage'
+import LoginPage from '../../containers/LoginPage'
 
 const style = {
   height: 475,
@@ -19,13 +19,13 @@ class Member extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        value: 'signup',
+            value: 'signup',
         };
     }
 
     handleChange = (value) => {
         this.setState({
-        value: value,
+            value: value,
         });
     };
 
@@ -47,12 +47,12 @@ class Member extends Component {
                     >
                         <Tab label="Sign up" value="signup">
                         <div>
-                            <Signup />
+                            <SignupPage />
                         </div>
                         </Tab>
                         <Tab label="Log In" value="login">
                         <div>
-                            <Login />
+                            <LoginPage />
                         </div>
                         </Tab>
                     </Tabs>
