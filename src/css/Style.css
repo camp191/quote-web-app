@@ -9,3 +9,15 @@
   width: 80%;
   color: #333;
 }
+
+.member-header {
+  font-size: 20px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.member-footer {
+  font-size: 16px;
+  margin-top: 16px;
+  text-align: center;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import ExampleSlider from './ExampleSlider'
+import Member from './Member'
 
 const Main = () => (
     <div className="container container-margin">
@@ -22,7 +23,7 @@ const Main = () => (
                 <ExampleSlider />
             </div>
             <div className="column">
-                Second column
+                <Member />
             </div>
         </div>
     </div>

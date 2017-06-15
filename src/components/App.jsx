@@ -10,6 +10,7 @@ import 'bulma/css/bulma.css'
 import '../css/Style.css'
 
 import Header from './Header'
+import Footer from './Footer'
 import Main from './Main/Main'
 import Developer from './Delveloper'
 import PageNotFound from './PageNotFound'
@@ -28,6 +29,7 @@ class App extends Component {
                                 return <PageNotFound />
                             }} />
                         </Switch>
+                        <Footer />
                     </div>
                 </Router>
             </MultiThemeProvider>
