@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Developer = () => (
+const PageNotFound = () => (
     <div className="container container-margin">
-        <h1>Thanapat Sorralump</h1>
+        <h1>Page Not Found</h1>
     </div>
 )
 
-export default Developer
+export default PageNotFound

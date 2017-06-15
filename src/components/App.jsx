@@ -7,10 +7,12 @@ import {
 import MultiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import 'bulma/css/bulma.css'
+import '../css/Style.css'
 
 import Header from './Header'
-import Home from './Home'
+import Main from './Main/Main'
 import Developer from './Delveloper'
+import PageNotFound from './PageNotFound'
 
 class App extends Component {
     render() {
@@ -20,10 +22,10 @@ class App extends Component {
                     <div>
                         <Header />
                         <Switch>
-                            <Route exact path="/" component={Home} />
+                            <Route exact path="/" component={Main} />
                             <Route path="/developer" component={Developer} />
                             <Route render={() => {
-                                return <h1>Page not Found</h1>
+                                return <PageNotFound />
                             }} />
                         </Switch>
                     </div>
