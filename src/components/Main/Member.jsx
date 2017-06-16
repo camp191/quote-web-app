@@ -36,10 +36,10 @@ class Member extends Component {
                     <Tabs
                         value={this.state.value}
                         onChange={this.handleChange}
-                        inkBarStyle={{background: '#004D40'}}
+                        inkBarStyle={{background: '#212121'}}
                         tabItemContainerStyle={
                             {
-                                backgroundColor: "#4DB6AC",
+                                backgroundColor: "#757575",
                                 borderTopLeftRadius: 5, 
                                 borderTopRightRadius: 5
                             }

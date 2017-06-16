@@ -40,6 +40,7 @@ class LoginPage extends Component {
             <LoginForm 
                 onSubmit={this.processForm}
                 onChange={this.setUser}
+                user={this.state.user}
             />
         )
     }

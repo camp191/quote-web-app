@@ -2,9 +2,11 @@
   "name": "quote",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.16.2",
     "bulma": "^0.4.2",
+    "concurrently": "^3.4.0",
     "material-ui": "^0.18.3",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
@@ -12,7 +14,8 @@
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1",
     "react-slick": "^0.14.11",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
@@ -21,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "con": "concurrently \"cd ../quoteApi && yarn dev\" \"yarn start\" "
   }
 }
