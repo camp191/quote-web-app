@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import api from './../utils/api.js'
 import LoginForm from './../components/Main/LoginForm'
 
 class LoginPage extends Component {
@@ -10,7 +11,8 @@ class LoginPage extends Component {
             user: {
                 email: '',
                 password: ''
-            }
+            },
+            loading: false
         }
 
         this.processForm = this.processForm.bind(this)
@@ -20,8 +22,31 @@ class LoginPage extends Component {
     processForm(e) {
         e.preventDefault()
 
-        console.log('email: ', this.state.user.email)
-        console.log('password', this.state.user.password)
+        this.setState({
+            loading: true
+        })
+
+        api.login(this.state.user)
+            .then((res) => {
+                if(res.status === 200) {
+                    console.log('Log in done')
+                    console.log(res)
+
+                    this.setState({
+                        error: {}
+                    })
+
+                } else {
+                    this.setState({
+                        loading: false,
+                        error: {
+                            message: "Wrong Email or Password"
+                        }
+                    })
+                }
+            }).catch((e) => {
+                console.log(e)
+            })
     }
 
     setUser(e) {
@@ -41,6 +66,8 @@ class LoginPage extends Component {
                 onSubmit={this.processForm}
                 onChange={this.setUser}
                 user={this.state.user}
+                error={this.state.error}
+                isLoading={this.state.loading}
             />
         )
     }

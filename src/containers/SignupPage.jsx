@@ -21,7 +21,6 @@ class SignupPage extends Component {
         this.processForm = this.processForm.bind(this)
         this.setUser = this.setUser.bind(this)
         this.handleClose = this.handleClose.bind(this)
-        this.loadingProcess = this.loadingProcess.bind(this)
     }
 
     setUser(e) {
@@ -45,20 +44,12 @@ class SignupPage extends Component {
         })
     }
 
-    loadingProcess() {
-        if(this.state.errors !== {}) {
-            this.setState({
-                loading: false
-            })
-        } else if (this.state.errors === {}) {
-            this.setState({
-                loading: true
-            })
-        }
-    }
-
     processForm(e) {
         e.preventDefault()
+
+        this.setState({
+            loading: true
+        })
 
         api.signup(this.state.user)
             .then((res) => {
@@ -67,10 +58,9 @@ class SignupPage extends Component {
 
                     this.setState({
                         errors: {},
-                        loading: false
+                        loading: false,
+                        open: true
                     })
-
-                    this.setState({open: true})
 
                 } else {
                     const namelength = this.state.user.name.length
@@ -81,7 +71,8 @@ class SignupPage extends Component {
                     var passwordResult = true
 
                     this.setState({
-                        errors: {}
+                        errors: {},
+                        loading: false
                     })
 
                     if(namelength < 5) {
@@ -99,7 +90,7 @@ class SignupPage extends Component {
                         this.setState({
                             errors: {
                                 ...this.state.errors,
-                                password: 'Password must be between 6-12 characters'
+                                password: 'Password must more than 6 characters'
                             }
                         })
                     }
@@ -135,7 +126,6 @@ class SignupPage extends Component {
                 onSubmit={this.processForm}
                 onChange={this.setUser}
                 handleClose={this.handleClose}
-                loadingProcess={this.loadingProcess}
             />
         )
     }

@@ -16,5 +16,19 @@ export default {
         }).catch((e) => {
             return e.response
         })
+    },
+
+    login: (user) => {
+        let encodeURI = window.encodeURI( host + 'user/login')
+
+        return axios.post(encodeURI, {
+            email: user.email,
+            password: user.password
+        })
+        .then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
     }
 }

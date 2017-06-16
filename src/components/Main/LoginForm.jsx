@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import CircularProgress from 'material-ui/CircularProgress'
 
-const LoginForm = ({ onChange, onSubmit, user }) => (
+const LoginForm = ({ onChange, onSubmit, user, error, isLoading }) => (
     <div style={{margin: "0 40px"}}>
         <p className="member-header">Log in to your Quote account</p>
         <form action="/" onSubmit={onSubmit}>
@@ -13,6 +14,7 @@ const LoginForm = ({ onChange, onSubmit, user }) => (
                     floatingLabelText="Email"
                     name="email"
                     onChange={onChange}
+                    errorText={error.message}
                     fullWidth={true}
                     value={user.email}
                 />
@@ -23,6 +25,7 @@ const LoginForm = ({ onChange, onSubmit, user }) => (
                     type="password"
                     name="password"
                     onChange={onChange}
+                    errorText={error.message}
                     fullWidth={true}
                     value={user.password}
                 />
@@ -30,7 +33,14 @@ const LoginForm = ({ onChange, onSubmit, user }) => (
             <RaisedButton
                 type="submit"
                 style={{marginTop: "30px", height: "45px"}}
-                label="Log In"
+                label={isLoading ? 
+                    <CircularProgress 
+                        size={30} 
+                        color="white"
+                        style={{marginTop: '8px'}}
+                    />
+                    : "Log In"
+                }
                 labelStyle={{lineHeight: '45px', color: 'white'}}
                 fullWidth={true}
                 backgroundColor="#FFAB00"
@@ -43,7 +53,9 @@ const LoginForm = ({ onChange, onSubmit, user }) => (
 LoginForm.propTypes = {
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    error: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
 }
 
 export default LoginForm

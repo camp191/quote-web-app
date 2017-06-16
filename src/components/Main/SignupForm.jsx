@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import CircularProgress from 'material-ui/CircularProgress'
 
-const SignupForm = ({ onChange, onSubmit, user, errors, isOpen, handleClose, loading, loadingProcess }) => (
+const SignupForm = ({ onChange, onSubmit, user, errors, isOpen, handleClose, loading }) => (
     <div style={{margin: "0 40px"}}>
         <p className="member-header">Be one of Quote member...</p>
         <form action="/" onSubmit={onSubmit}>
@@ -57,7 +57,6 @@ const SignupForm = ({ onChange, onSubmit, user, errors, isOpen, handleClose, loa
                 labelStyle={{lineHeight: '45px', color: 'white'}}
                 fullWidth={true}
                 backgroundColor="#FFAB00"
-                onTouchTap={loadingProcess}
             />
         </form>
         <Dialog
