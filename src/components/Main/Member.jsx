@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Paper from 'material-ui/Paper';
 
@@ -14,54 +15,42 @@ const style = {
   borderRadius: 5
 };
 
+const Member = ({loginRedirect, tabs, tabChange}) => (
+    <div>
+        <Paper style={style} zDepth={2} >
+            <Tabs
+                value={tabs}
+                onChange={tabChange}
+                inkBarStyle={{background: '#212121'}}
+                tabItemContainerStyle={
+                    {
+                        backgroundColor: "#757575",
+                        borderTopLeftRadius: 5, 
+                        borderTopRightRadius: 5
+                    }
+                }
+            >
+                <Tab label="Sign up" value="signup">
+                <div>
+                    <SignupPage />
+                </div>
+                </Tab>
+                <Tab label="Log In" value="login">
+                <div>
+                    <LoginPage 
+                        loginRedirect={loginRedirect}
+                    />
+                </div>
+                </Tab>
+            </Tabs>
+        </Paper>
+    </div>
+)
 
-class Member extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 'signup',
-        };
-    }
-
-    handleChange = (value) => {
-        this.setState({
-            value: value,
-        });
-    };
-
-    render() {
-        return (
-            <div>
-                <Paper style={style} zDepth={2} >
-                    <Tabs
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                        inkBarStyle={{background: '#212121'}}
-                        tabItemContainerStyle={
-                            {
-                                backgroundColor: "#757575",
-                                borderTopLeftRadius: 5, 
-                                borderTopRightRadius: 5
-                            }
-                        }
-                    >
-                        <Tab label="Sign up" value="signup">
-                        <div>
-                            <SignupPage />
-                        </div>
-                        </Tab>
-                        <Tab label="Log In" value="login">
-                        <div>
-                            <LoginPage 
-                                loginRedirect={this.props.loginRedirect}
-                            />
-                        </div>
-                        </Tab>
-                    </Tabs>
-                </Paper>
-            </div>
-        );
-    }
+Member.propTypes = {
+    tabs: PropTypes.string.isRequired,
+    loginRedirect: PropTypes.func.isRequired,
+    tabChange: PropTypes.func.isRequired
 }
 
 export default Member

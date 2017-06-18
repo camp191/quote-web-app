@@ -1,25 +1,33 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom' 
-import ExampleSlider from './ExampleSlider'
-import Member from './Member'
+import ExampleSlider from './../components/Main/ExampleSlider'
+import Member from './../components/Main/Member'
 
-import Auth from './../../modules/Auth'
+import Auth from './../modules/Auth'
 
 class Main extends Component {
     constructor(props) {
         super(props)
 
         this.state={
-            redirect: false
+            redirect: false,
+            tabs: 'signup'
         }
 
         this.loginRedirect = this.loginRedirect.bind(this)
+        this.tabChange = this.tabChange.bind(this)
     }
 
     loginRedirect() {
         this.setState({
             redirect: true
         })
+    }
+
+    tabChange(value) {
+        this.setState({
+            tabs: value,
+        });
     }
 
     render() {
@@ -54,6 +62,8 @@ class Main extends Component {
                     <div className="column">
                         <Member 
                             loginRedirect={this.loginRedirect}
+                            tabs={this.state.tabs}
+                            tabChange={this.tabChange}
                         />
                     </div>
                 </div>
