@@ -9,7 +9,8 @@ const imageStyle = {
 const nameStyle = {
     textAlign: 'center', 
     fontWeight: 'bold', 
-    fontSize: '20px'
+    fontSize: '20px',
+    margin: '0 15px'
 }
 
 const descriptionStyle = {

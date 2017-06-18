@@ -14,7 +14,7 @@ class Home extends Component {
         }
 
         return (
-           <div>Home Page</div> 
+           <div className="container container-margin">Home Page</div> 
         )
     }
 }
