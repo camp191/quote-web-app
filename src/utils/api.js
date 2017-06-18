@@ -45,6 +45,19 @@ export default {
         }).catch((e) => {
             return e.response
         })
+    },
 
+    getUser: () => {
+        let encodeURI = window.encodeURI( host + 'user/me')
+
+        return axios.get(encodeURI, {
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
     }
 }

@@ -3,8 +3,17 @@ import { NavLink } from 'react-router-dom'
 
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem';
+import Subheader from 'material-ui/Subheader'
+import {List, ListItem} from 'material-ui/List'
 import RaisedButton from 'material-ui/RaisedButton'
+import CircularProgress from 'material-ui/CircularProgress'
+
+import Home from 'material-ui/svg-icons/action/home'
+import Exit from 'material-ui/svg-icons/action/exit-to-app'
+import Settings from 'material-ui/svg-icons/action/settings'
+import AccountCircle from 'material-ui/svg-icons/action/account-circle'
+
+import ProfileNav from '../components/Header/ProfileNav'
 
 import Auth from './../modules/Auth'
 import api from './../utils/api'
@@ -14,8 +23,17 @@ class Header extends Component {
         super(props)
 
         this.state = {
-            open: false
+            open: false,
+            profile: null
         }
+    }
+
+    componentDidMount() {
+        api.getUser().then((response) => {
+            this.setState({
+                profile: response.data
+            })
+        })
     }
 
     handleToggle = () => this.setState({open: !this.state.open})
@@ -25,19 +43,12 @@ class Header extends Component {
     logoutUser = () => {
         this.handleClose()
         
-        api.logout().then((response) => {
-            console.log(response)
-        }).catch((e) => {
-            console.log(e)
-        })
+        api.logout()
 
         Auth.deAuthenticateUser()
-
-        
     }
 
     render() {
-
         return (
             <div>
                 <AppBar 
@@ -67,13 +78,40 @@ class Header extends Component {
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({open})}
                 >
-                    <MenuItem onTouchTap={this.handleClose}>Profile</MenuItem>
-                    <MenuItem 
-                        onTouchTap={this.logoutUser}
-                        containerElement={ <NavLink exact to="/" /> } 
-                    >
-                        Log Out
-                    </MenuItem>
+                    {
+                        !this.state.profile ?
+                        <div style={{textAlign: 'center', marginTop: '40px'}}>
+                            <CircularProgress />
+                        </div>
+                         :
+                        <ProfileNav 
+                            profile={this.state.profile}
+                        />
+                    }
+                    <List>
+                        <Subheader>Menu</Subheader>
+                        <ListItem
+                            primaryText="Home"
+                            onTouchTap={this.handleClose}
+                            leftIcon={<Home />}
+                        />
+                        <ListItem 
+                            primaryText="Profile"
+                            onTouchTap={this.handleClose}
+                            leftIcon={<AccountCircle />}
+                        />
+                        <ListItem
+                            primaryText="Settings"
+                            onTouchTap={this.handleClose}
+                            leftIcon={<Settings />}
+                        />
+                        <ListItem
+                            primaryText="Log Out"
+                            onTouchTap={this.logoutUser}
+                            containerElement={ <NavLink exact to="/" /> }
+                            leftIcon={<Exit />}
+                        />
+                    </List>
                 </Drawer>
             </div>
         )
