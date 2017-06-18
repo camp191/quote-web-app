@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SignupForm from './../components/Main/SignupForm'
 import validator from 'validator'
-import api from './../utils/api.js'
+import api from './../utils/api'
 
 class SignupPage extends Component {
     constructor(props) {

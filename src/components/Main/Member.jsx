@@ -52,7 +52,9 @@ class Member extends Component {
                         </Tab>
                         <Tab label="Log In" value="login">
                         <div>
-                            <LoginPage />
+                            <LoginPage 
+                                loginRedirect={this.props.loginRedirect}
+                            />
                         </div>
                         </Tab>
                     </Tabs>

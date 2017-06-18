@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import api from './../utils/api.js'
+import api from './../utils/api'
 import LoginForm from './../components/Main/LoginForm'
+import Auth from './../modules/Auth'
 
 class LoginPage extends Component {
     constructor(props) {
@@ -29,13 +30,11 @@ class LoginPage extends Component {
         api.login(this.state.user)
             .then((res) => {
                 if(res.status === 200) {
-                    console.log('Log in done')
-                    console.log(res)
+                    this.setState({error: {}})
 
-                    this.setState({
-                        error: {}
-                    })
+                    Auth.authenticateUser(res.headers["x-auth"])
 
+                    this.props.loginRedirect()
                 } else {
                     this.setState({
                         loading: false,
