@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import { 
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import MultiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import 'bulma/css/bulma.css'
 import '../css/Style.css'
+import 'font-awesome/css/font-awesome.css'
 
 import Header from './../containers/Header'
 import Footer from './Footer'
-import Main from './../containers/Main'
-import Home from './Home/Home'
-import Developer from './Delveloper'
-import PageNotFound from './PageNotFound'
+import Route from './RouteContent'
+
+import Auth from '../modules/Auth'
+import api from '../utils/api'
 
 class App extends Component {
     constructor(props) {
@@ -25,6 +22,18 @@ class App extends Component {
         }
 
         this.loadProfile = this.loadProfile.bind(this)
+    }
+
+    componentDidMount() {
+        if(Auth.isAuthenticate()) {
+            api.getUser().then((response) => {
+                this.setState(() => {
+                    return {
+                        profile: response.data
+                    }
+                })
+            })
+        }
     }
 
     loadProfile(profile) {
@@ -38,26 +47,11 @@ class App extends Component {
             <MultiThemeProvider>
                 <Router>
                     <div>
-                        <Header 
+                        <Header profile={this.state.profile} />
+                        <Route 
+                            loadProfile={this.loadProfile}
                             profile={this.state.profile}
                         />
-                        <Switch>
-                            <Route 
-                                exact 
-                                path="/" 
-                                component={(props) => 
-                                    <Main 
-                                        {...props} 
-                                        loadProfile={this.loadProfile} 
-                                    />
-                                } 
-                            />
-                            <Route path="/developer" component={(props) => <Developer {...props} Hello="Hello" />} />
-                            <Route path="/home" component={Home} />
-                            <Route render={() => {
-                                return <PageNotFound />
-                            }} />
-                        </Switch>
                         <Footer />
                     </div>
                 </Router>

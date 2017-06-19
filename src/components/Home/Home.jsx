@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Auth from '../../modules/Auth'
 import { Redirect } from 'react-router-dom'
 
+import Auth from '../../modules/Auth'
+
 class Home extends Component {
-    state = {  }
+
     render() {
         if(!Auth.isAuthenticate()) {
             return (
@@ -14,7 +15,9 @@ class Home extends Component {
         }
 
         return (
-           <div className="container container-margin">Home Page</div> 
+            <div className="container container-margin">
+                <h1>Hello World</h1>
+            </div> 
         )
     }
 }

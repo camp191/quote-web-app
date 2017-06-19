@@ -32,7 +32,7 @@ const HeaderNav = ({profile, open, handleToggle, handleClose, logoutUser}) => (
             zDepth={1}
             showMenuIconButton={Auth.isAuthenticate() ? true : false}
             onLeftIconButtonTouchTap={handleToggle}
-            style={{backgroundColor: '#FFB300'}}
+            style={{backgroundColor: '#FFB300', position: 'fixed', top:'0'}}
             titleStyle={{fontFamily: 'Permanent Marker'}}
             iconElementRight={
                 <RaisedButton 
@@ -62,11 +62,13 @@ const HeaderNav = ({profile, open, handleToggle, handleClose, logoutUser}) => (
                 <ListItem
                     primaryText="Home"
                     onTouchTap={handleClose}
+                    containerElement={ <NavLink to="/home" />}
                     leftIcon={<Home />}
                 />
                 <ListItem 
                     primaryText="Profile"
                     onTouchTap={handleClose}
+                    containerElement={ <NavLink to="/profile" />}
                     leftIcon={<AccountCircle />}
                 />
                 <ListItem
