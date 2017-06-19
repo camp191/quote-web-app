@@ -8,17 +8,8 @@ class Header extends Component {
         super(props)
 
         this.state = {
-            open: false,
-            profile: null
+            open: false
         }
-    }
-
-    componentDidMount() {
-        api.getUser().then((response) => {
-            this.setState({
-                profile: response.data
-            })
-        })
     }
 
     handleToggle = () => this.setState({open: !this.state.open})
@@ -34,7 +25,7 @@ class Header extends Component {
     render() {
         return (
             <HeaderNav 
-                profile={this.state.profile}
+                profile={this.props.profile}
                 open={this.state.open}
                 handleToggle={this.handleToggle}
                 handleClose={this.handleClose}

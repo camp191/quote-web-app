@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import api from './../utils/api'
 import LoginForm from './../components/Main/LoginForm'
 import Auth from './../modules/Auth'
@@ -33,6 +34,10 @@ class LoginPage extends Component {
                     this.setState({error: {}})
 
                     Auth.authenticateUser(res.headers["x-auth"])
+                    
+                    api.getUser().then((response) => {
+                        return this.props.loadProfile(response.data)
+                    })
 
                     this.props.loginRedirect()
                 } else {
@@ -70,6 +75,10 @@ class LoginPage extends Component {
             />
         )
     }
+}
+
+LoginPage.propTypes = {
+    loadProfile: PropTypes.func.isRequired
 }
 
 export default LoginPage

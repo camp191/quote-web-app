@@ -60,7 +60,8 @@ class Main extends Component {
                         <ExampleSlider />
                     </div>
                     <div className="column">
-                        <Member 
+                        <Member
+                            loadProfile={this.props.loadProfile}
                             loginRedirect={this.loginRedirect}
                             tabs={this.state.tabs}
                             tabChange={this.tabChange}

@@ -17,14 +17,41 @@ import Developer from './Delveloper'
 import PageNotFound from './PageNotFound'
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            profile: null
+        }
+
+        this.loadProfile = this.loadProfile.bind(this)
+    }
+
+    loadProfile(profile) {
+        this.setState({
+            profile
+        })
+    }
+
     render() {
         return (
             <MultiThemeProvider>
                 <Router>
                     <div>
-                        <Header />
+                        <Header 
+                            profile={this.state.profile}
+                        />
                         <Switch>
-                            <Route exact path="/" component={Main} />
+                            <Route 
+                                exact 
+                                path="/" 
+                                component={(props) => 
+                                    <Main 
+                                        {...props} 
+                                        loadProfile={this.loadProfile} 
+                                    />
+                                } 
+                            />
                             <Route path="/developer" component={(props) => <Developer {...props} Hello="Hello" />} />
                             <Route path="/home" component={Home} />
                             <Route render={() => {
