@@ -20,59 +20,62 @@ const Dropdown = {
     width: 500
 }
 
-const AddQuote = ({quote, quoteType, clearInput, handleInputChange, handleCheckBoxChange}) => (
+const AddQuote = ({quote, clearInput, handleInputChange, handleCheckBoxChange, onSubmit}) => (
     <div style={{textAlign: 'center'}}>
         <Paper style={paper} zDepth={1}>
-            <TextField
-                hintText="Add Your Quote..."
-                multiLine={true}
-                fullWidth={true}
-                name="quoteName"
-                onChange={handleInputChange}
-                value={quote.quoteName}
-            />
-            <TextField
-                hintText="By..."
-                fullWidth={true}
-                name="quoteBy"
-                onChange={handleInputChange}
-                value={quote.quoteBy}
-            />
-            <DropDownMenu
-                value={quoteType}
-                onChange={handleCheckBoxChange}
-                style={Dropdown}
-                autoWidth={false}
-            >
-                <MenuItem value={1} disabled={true} primaryText="Quote Type" />
-                <MenuItem value={2} primaryText="General" />
-                <MenuItem value={3} primaryText="Love" />
-                <MenuItem value={4} primaryText="Work" />
-                <MenuItem value={5} primaryText="Inspiration" />
-                <MenuItem value={6} primaryText="Other" />
-            </DropDownMenu>
-            <div style={{textAlign: 'center'}}>
-                <RaisedButton 
-                    label="Post" 
-                    primary={true}
-                    style={{marginRight: 20}}
+            <form action="/" onSubmit={onSubmit}>
+                <TextField
+                    hintText="Add Your Quote..."
+                    multiLine={true}
+                    fullWidth={true}
+                    name="quote"
+                    onChange={handleInputChange}
+                    value={quote.quote}
                 />
-                <RaisedButton 
-                    label="Clear"
-                    secondary={true}
-                    onTouchTap={clearInput}
+                <TextField
+                    hintText="By..."
+                    fullWidth={true}
+                    name="quoteBy"
+                    onChange={handleInputChange}
+                    value={quote.quoteBy}
                 />
-            </div>
+                <DropDownMenu
+                    value={quote.type}
+                    onChange={handleCheckBoxChange}
+                    style={Dropdown}
+                    autoWidth={false}
+                >
+                    <MenuItem value="QuoteType" disabled={true} primaryText="Quote Type" />
+                    <MenuItem value={1} primaryText="General" />
+                    <MenuItem value={2} primaryText="Love" />
+                    <MenuItem value={3} primaryText="Work" />
+                    <MenuItem value={4} primaryText="Inspiration" />
+                    <MenuItem value={5} primaryText="Other" />
+                </DropDownMenu>
+                <div style={{textAlign: 'center'}}>
+                    <RaisedButton
+                        type="submit"
+                        label="Post" 
+                        primary={true}
+                        style={{marginRight: 20}}
+                    />
+                    <RaisedButton 
+                        label="Clear"
+                        secondary={true}
+                        onTouchTap={clearInput}
+                    />
+                </div>
+            </form>
         </Paper>
     </div>
 )
 
 AddQuote.propTypes = {
     quote: PropTypes.object.isRequired,
-    quoteType: PropTypes.number.isRequired,
     clearInput: PropTypes.func.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleCheckBoxChange: PropTypes.func.isRequired
+    handleCheckBoxChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }
 
 export default AddQuote

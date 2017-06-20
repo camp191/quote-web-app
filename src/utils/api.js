@@ -59,5 +59,22 @@ export default {
         }).catch((e) => {
             return e.response
         })
+    },
+
+    addQuote: (quote) => {
+        let encodeURI = window.encodeURI( host + 'quotes' )
+        return axios.post(encodeURI, {
+            'quote': quote.quote,
+            'quoteBy': quote.quoteBy,
+            'type': quote.type
+        },{
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
     }
 }

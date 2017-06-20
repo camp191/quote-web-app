@@ -7,31 +7,41 @@ import ProfileQuote from './ProfileQuote'
 import AddQuote from './AddQuote'
 
 import Auth from '../../modules/Auth'
+import api from '../../utils/api'
 
 class Profile extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            quoteType: 1,
             quote: {
-                quoteName: '',
+                quote: '',
                 quoteBy: '',
+                type: 'QuoteType'
             }
         }
     }
 
     clearInput = () => {
         this.setState({
-            quoteType: 1,
             quote: {
-                quoteName: '',
+                quote: '',
                 quoteBy: '',
+                type: 'QuoteType'
             }
         })
     }
 
-    handleCheckBoxChange = (event, index, value) => this.setState({quoteType: value});
+    handleCheckBoxChange = (e, value) => {
+        e.preventDefault()
+
+        this.setState({
+            quote: {
+                ...this.state.quote,
+                type: value
+            }
+        })
+    }
 
     handleInputChange = (e) => {
         e.preventDefault()
@@ -44,6 +54,18 @@ class Profile extends Component {
         this.setState({
             quote
         })
+    }
+
+    processForm = (e) => {
+        e.preventDefault()
+        let quote = {...this.state.quote}
+
+        api.addQuote(quote)
+            .then((response) => {
+                console.log(response)
+            }).catch(e => {
+                console.log(e)
+            })
     }
 
     render() {
@@ -69,10 +91,10 @@ class Profile extends Component {
                     <div className="column is-8">
                         <AddQuote 
                             quote={this.state.quote}
-                            quoteType={this.state.quoteType}
                             clearInput={this.clearInput}
                             handleInputChange={this.handleInputChange}
                             handleCheckBoxChange={this.handleCheckBoxChange}
+                            onSubmit={this.processForm}
                         />
                     </div>
                 </div>
