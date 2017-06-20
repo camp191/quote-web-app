@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ProfileQuoteList from './ProfileQuoteList'
 
 class ProfileQuote extends Component {
     state = {  }
@@ -6,12 +7,17 @@ class ProfileQuote extends Component {
 
     render() {
         const topic = {
-            fontSize: '30px'
+            fontSize: '30px',
+            textAlign: 'center', 
+            margin: '20px 0px'
         }
 
         return (
-            <div style={{textAlign: 'center', marginTop: '20px'}}>
-                <h1 style={topic}>All Quotes</h1>
+            <div>
+                <h1 style={topic}>My Quotes</h1>
+                <div style={{width: '60%', margin: '10px auto'}}>
+                    <ProfileQuoteList />
+                </div>
             </div>
         )
     }
