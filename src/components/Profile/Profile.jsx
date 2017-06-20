@@ -14,6 +14,9 @@ class Profile extends Component {
         super(props)
 
         this.state = {
+            addModal: false,
+            addLoading: false,
+            error: '',
             quote: {
                 quote: '',
                 quoteBy: '',
@@ -24,6 +27,8 @@ class Profile extends Component {
 
     clearInput = () => {
         this.setState({
+            addLoading: false,
+            error: '',
             quote: {
                 quote: '',
                 quoteBy: '',
@@ -56,13 +61,48 @@ class Profile extends Component {
         })
     }
 
+    handleAddModalOpen = () => {
+        this.setState({addModal: true})
+    }
+
+    handleAddModalClose = () => {
+        this.setState({addModal: false})
+    }
+
     processForm = (e) => {
         e.preventDefault()
+
+        this.setState({
+            error: ''
+        })
+
         let quote = {...this.state.quote}
 
         api.addQuote(quote)
             .then((response) => {
-                console.log(response)
+
+                this.setState({
+                    addLoading: true
+                })
+
+                if(response.status === 200) {
+                    this.setState({
+                        addLoading: false,
+                        quote: {
+                            quote: '',
+                            quoteBy: '',
+                            type: 'QuoteType'
+                        }
+                    })
+
+                    this.handleAddModalOpen()
+                    
+                } else if (response.status === 400) {
+                    this.setState({
+                        error: 'Please fill all of inputs',
+                        addLoading: false
+                    })
+                }
             }).catch(e => {
                 console.log(e)
             })
@@ -89,12 +129,16 @@ class Profile extends Component {
                         }
                     </div>
                     <div className="column is-8">
-                        <AddQuote 
+                        <AddQuote
+                            loading={this.state.addLoading}
+                            error={this.state.error}
                             quote={this.state.quote}
                             clearInput={this.clearInput}
                             handleInputChange={this.handleInputChange}
                             handleCheckBoxChange={this.handleCheckBoxChange}
                             onSubmit={this.processForm}
+                            handleAddModalClose={this.handleAddModalClose}
+                            isModalOpen={this.state.addModal}
                         />
                     </div>
                 </div>
