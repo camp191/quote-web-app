@@ -76,5 +76,18 @@ export default {
         }).catch((e) => {
             return e.response
         })
+    },
+
+    getUserQuote: (quotes) => {
+        let encodeURI = window.encodeURI( host + 'quotes' )
+        return axios.get(encodeURI, {
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response.data.quote
+        }).catch((e) => {
+            return e.response
+        })
     }
 }
