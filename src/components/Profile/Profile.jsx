@@ -67,6 +67,7 @@ class Profile extends Component {
 
     handleAddModalClose = () => {
         this.setState({addModal: false})
+        this.props.handleMyQuote()
     }
 
     processForm = (e) => {
@@ -77,7 +78,6 @@ class Profile extends Component {
         })
 
         let quote = {...this.state.quote}
-
         api.addQuote(quote)
             .then((response) => {
 
@@ -142,7 +142,9 @@ class Profile extends Component {
                         />
                     </div>
                 </div>
-                <ProfileQuote />
+                <ProfileQuote 
+                    myQuotes={this.props.myQuotes}
+                />
             </div>
         )
     }

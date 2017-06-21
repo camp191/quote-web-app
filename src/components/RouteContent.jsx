@@ -7,7 +7,7 @@ import Profile from './Profile/Profile'
 import Developer from './Delveloper'
 import PageNotFound from './PageNotFound'
 
-const RouteContent = ({ loadProfile, profile }) => (
+const RouteContent = ({ loadProfile, profile, myQuotes, handleMyQuote }) => (
     <Switch>
         <Route 
             exact 
@@ -46,6 +46,8 @@ const RouteContent = ({ loadProfile, profile }) => (
                 <Profile 
                     {...props}
                     profile={profile}
+                    myQuotes={myQuotes}
+                    handleMyQuote={handleMyQuote}
                 />
             } 
         />

@@ -18,10 +18,12 @@ class App extends Component {
         super(props)
 
         this.state = {
-            profile: null
+            profile: null,
+            myQuotes: []
         }
 
         this.loadProfile = this.loadProfile.bind(this)
+        this.updateMyQuotes = this.updateMyQuotes.bind(this)
     }
 
     componentDidMount() {
@@ -30,6 +32,15 @@ class App extends Component {
                 this.setState(() => {
                     return {
                         profile: response.data
+                    }
+                })
+            })
+
+            api.getUserQuote().then((response) => {
+                let reverseResponse = response.reverse()
+                this.setState(() => {
+                    return {
+                        myQuotes: reverseResponse
                     }
                 })
             })
@@ -42,6 +53,13 @@ class App extends Component {
         })
     }
 
+    updateMyQuotes() {
+        api.getUserQuote().then((response) => {
+            let reverseResponse = response.reverse()
+            this.setState({myQuotes: reverseResponse})
+        })
+    }
+
     render() {
         return (
             <MultiThemeProvider>
@@ -51,6 +69,8 @@ class App extends Component {
                         <Route 
                             loadProfile={this.loadProfile}
                             profile={this.state.profile}
+                            myQuotes={this.state.myQuotes}
+                            handleMyQuote={this.updateMyQuotes}
                         />
                         <Footer />
                     </div>

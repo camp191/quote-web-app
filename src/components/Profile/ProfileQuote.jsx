@@ -1,36 +1,7 @@
 import React, {Component} from 'react'
 import ProfileQuoteList from './ProfileQuoteList'
 
-import api from './../../utils/api'
-
 class ProfileQuote extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            quotes: []
-        }
-    }
-
-    componentDidMount() {
-        api.getUserQuote().then((response) => {
-            let reRes = response.reverse()
-            this.setState({
-                quotes: reRes
-            })
-        })
-    }
-
-    componentDidUpdate() {
-        api.getUserQuote().then((response) => {
-            let reRes = response.reverse()
-
-            this.setState({
-                quotes: reRes
-            })
-        })
-    }
-
     render() {
         const topic = {
             fontSize: '30px',
@@ -42,7 +13,7 @@ class ProfileQuote extends Component {
             <div>
                 <h1 style={topic}>My Quotes</h1>
                 <div style={{width: '60%', margin: '10px auto'}}>
-                    {this.state.quotes.map((quote) => {
+                    {this.props.myQuotes.map((quote) => {
                         return <ProfileQuoteList 
                                     key={quote._id}
                                     quote={quote.quote}
