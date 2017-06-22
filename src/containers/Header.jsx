@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import HeaderNav from './../components/Header/HeaderNav'
 import api from './../utils/api'
 import Auth from './../modules/Auth'
@@ -14,7 +16,11 @@ class Header extends Component {
 
     handleToggle = () => this.setState({open: !this.state.open})
 
-    handleClose = () => this.setState({open: false})
+    handleClose = () => {
+        this.setState({open: false})
+
+        this.props.updateMyQuotes()
+    }
 
     logoutUser = () => {
         this.handleClose()
@@ -33,6 +39,10 @@ class Header extends Component {
             />
         )
     }
+}
+
+Header.propTypes = {
+    updateMyQuotes: PropTypes.func.isRequired
 }
 
 export default Header

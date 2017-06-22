@@ -89,5 +89,18 @@ export default {
         }).catch((e) => {
             return e.response
         })
+    },
+
+    deleteQuote: (id) => {
+        let encodeURI = window.encodeURI( host + 'quotes/' + id )
+        return axios.delete(encodeURI, {
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
     }
 }

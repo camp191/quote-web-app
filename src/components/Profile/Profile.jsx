@@ -15,6 +15,7 @@ class Profile extends Component {
 
         this.state = {
             addModal: false,
+            deleteModal: false,
             addLoading: false,
             error: '',
             quote: {
@@ -67,6 +68,25 @@ class Profile extends Component {
 
     handleAddModalClose = () => {
         this.setState({addModal: false})
+        this.props.handleMyQuote()
+    }
+
+    handleDeleteModalOpen = () => {
+        this.setState({deleteModal: true})
+    }
+
+    handleDeleteModalClose = () => {
+        this.setState({deleteModal: false})
+    }
+
+    handleDeleteQuote = (id) => {
+        api.deleteQuote(id)
+            .then((res) => {
+                console.log(res)
+            })
+        
+        this.setState({deleteModal: false})
+
         this.props.handleMyQuote()
     }
 
@@ -142,9 +162,29 @@ class Profile extends Component {
                         />
                     </div>
                 </div>
-                <ProfileQuote 
-                    myQuotes={this.props.myQuotes}
-                />
+                <h1 style={{
+                    fontSize: '30px',
+                    textAlign: 'center', 
+                    margin: '20px 0px',
+                    fontWeight: 'bold'
+                }}>
+                    My Quotes
+                </h1>
+                <div style={{margin: '10px auto'}}>
+                    {this.props.myQuotes === [] ?
+                        <div style={{textAlign: 'center', margin: '80px 0'}}>
+                            <CircularProgress /> 
+                        </div>:
+                        <ProfileQuote
+                            myQuotes={this.props.myQuotes}
+                            profile={this.props.profile}
+                            handleDeleteModalOpen={this.handleDeleteModalOpen}
+                            handleDeleteModalClose={this.handleDeleteModalClose}
+                            handleDeleteQuote={this.handleDeleteQuote}
+                            isDeleteModalOpen={this.state.deleteModal}
+                        />
+                    }
+                </div>
             </div>
         )
     }

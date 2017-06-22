@@ -54,6 +54,7 @@ class App extends Component {
     }
 
     updateMyQuotes() {
+        this.setState({myQuotes: []})
         api.getUserQuote().then((response) => {
             let reverseResponse = response.reverse()
             this.setState({myQuotes: reverseResponse})
@@ -65,7 +66,10 @@ class App extends Component {
             <MultiThemeProvider>
                 <Router>
                     <div>
-                        <Header profile={this.state.profile} />
+                        <Header 
+                            profile={this.state.profile}
+                            updateMyQuotes={this.updateMyQuotes}
+                        />
                         <Route 
                             loadProfile={this.loadProfile}
                             profile={this.state.profile}
