@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Main from './../containers/Main'
 import Home from './Home/Home'
 import Profile from './Profile/Profile'
+import Settings from './Settings/Settings'
 import Developer from './Delveloper'
 import PageNotFound from './PageNotFound'
 
@@ -50,6 +51,16 @@ const RouteContent = ({ loadProfile, profile, myQuotes, handleMyQuote }) => (
                     handleMyQuote={handleMyQuote}
                 />
             } 
+        />
+
+        <Route 
+            path="/settings"
+            component={(props) => 
+                <Settings 
+                    {...props}
+                    profile={profile}
+                />
+        }
         />
 
         <Route render={() => {

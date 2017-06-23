@@ -74,6 +74,7 @@ const HeaderNav = ({profile, open, handleToggle, handleClose, logoutUser}) => (
                 <ListItem
                     primaryText="Settings"
                     onTouchTap={handleClose}
+                    containerElement={ <NavLink to="/settings" />}
                     leftIcon={<Settings />}
                 />
                 <ListItem
