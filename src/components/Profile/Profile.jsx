@@ -166,7 +166,7 @@ class Profile extends Component {
                     fontSize: '30px',
                     textAlign: 'center', 
                     margin: '20px 0px',
-                    fontWeight: 'bold'
+                    fontWeight: '300'
                 }}>
                     My Quotes
                 </h1>
