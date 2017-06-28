@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
@@ -37,14 +38,18 @@ const styles = {
     }
 }
 
-const ProfileForm = () => (
+const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
     <div style={styles.wrapper}>
         <Paper style={styles.paper} zDepth={2}>
-            <form action="/">
+            <form action="/" onSubmit={onSubmit}>
                 <div>
                     <h2 style={styles.header}>Avatar</h2>
                     <h3>Profile Picture</h3>
-                    <input type="file"/>
+                    <input 
+                        name="image"
+                        type="file" 
+                        onChange={handleProfileInput}
+                    />
                     <hr/>
                 </div>
                 <div style={styles.topicSetting}>
@@ -52,17 +57,26 @@ const ProfileForm = () => (
                     <div>
                         <h3>Name*</h3>
                         <TextField
+                            name="name"
+                            onChange={handleProfileInput}
                             style={styles.textField}
-                            hintText="สมยศ มั่งมี"
+                            hintText="Adam Goodman"
+                            value={profileEdit.name ? profileEdit.name : undefined}
                         />
                     </div>
                     <div style={styles.topicSetting}>
                         <h3>Description</h3>
                         <TextField
+                            name="description"
+                            onChange={handleProfileInput}
                             style={styles.textField}
                             hintText="Fulltime Figther, Parttime Daydreamer..."
                             multiLine={true}
                             rowsMax={4}
+                            value={
+                                profileEdit.description ? 
+                                profileEdit.description : 
+                                (profile.description ? profile.description : undefined)}
                         />
                     </div>
                     <div style={styles.topicSetting}>
@@ -71,11 +85,16 @@ const ProfileForm = () => (
                             style={styles.textField}
                             disabled={true}
                             hintText="Example@example.com"
+                            value={profile.email}
                         />
                     </div>
                     <div style={styles.topicSetting}>
                         <h3>Sex</h3>
-                        <RadioButtonGroup name="shipSpeed">
+                        <RadioButtonGroup 
+                            name="sex" 
+                            defaultSelected={profile.sex ? profile.sex : null}
+                            onChange={handleProfileInput}
+                        >
                             <RadioButton
                                 value="male"
                                 label="Male"
@@ -100,4 +119,11 @@ const ProfileForm = () => (
     </div>
 )
 
-export default ProfileForm
+SettingsForm.propTypes = {
+    profile: PropTypes.object.isRequired,
+    profileEdit: PropTypes.object.isRequired,
+    handleProfileInput: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
+}
+
+export default SettingsForm
