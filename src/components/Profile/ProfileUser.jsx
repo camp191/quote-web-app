@@ -39,7 +39,19 @@ const ProfileUser = ({profile}) => (
             style={imageProfile}
         />
         <h1 style={name}>
-            {profile.name} {profile.sex}
+            {profile.name} 
+            {profile.sex === 'male' ? 
+                <FontAwesome
+                        className='fa-mars'
+                        name='fa-mars'
+                        style={icon}
+                /> :
+                <FontAwesome
+                    className='fa-venus'
+                    name='fa-venus'
+                    style={icon}
+                />
+            }
         </h1>
         <h2 style={description}>
             {profile.description ? profile.description : ' " No Description... "'}

@@ -35,7 +35,7 @@ const ProfileNav = ({profile}) => (
             {profile.name}
         </h1>
         <h2 style={descriptionStyle}>
-            "Hello World !!"
+            {profile.description ? profile.description : ' " No Description... "'}
         </h2>
     </div>
 )
