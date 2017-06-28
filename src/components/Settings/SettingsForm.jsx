@@ -41,17 +41,24 @@ const styles = {
 const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
     <div style={styles.wrapper}>
         <Paper style={styles.paper} zDepth={2}>
-            <form action="/" onSubmit={onSubmit}>
+            <form>
                 <div>
                     <h2 style={styles.header}>Avatar</h2>
                     <h3>Profile Picture</h3>
                     <input 
                         name="image"
                         type="file" 
-                        onChange={handleProfileInput}
                     />
+                    <RaisedButton
+                        type="submit"
+                        style={styles.submitBtn}
+                        label="Submit" 
+                        fullWidth={true}
+                        primary={true} />
                     <hr/>
                 </div>
+            </form>
+            <form action="/" onSubmit={onSubmit}>
                 <div style={styles.topicSetting}>
                     <h2 style={styles.header}>Imformation</h2>
                     <div>
@@ -73,10 +80,7 @@ const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
                             hintText="Fulltime Figther, Parttime Daydreamer..."
                             multiLine={true}
                             rowsMax={4}
-                            value={
-                                profileEdit.description ? 
-                                profileEdit.description : 
-                                (profile.description ? profile.description : undefined)}
+                            value={profileEdit.description ? profileEdit.description : undefined}
                         />
                     </div>
                     <div style={styles.topicSetting}>

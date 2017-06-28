@@ -8,7 +8,7 @@ import Settings from './Settings/Settings'
 import Developer from './Delveloper'
 import PageNotFound from './PageNotFound'
 
-const RouteContent = ({ loadProfile, profile, myQuotes, handleMyQuote }) => (
+const RouteContent = ({ loadProfile, profile, myQuotes, handleMyQuote, reloadProfile }) => (
     <Switch>
         <Route 
             exact 
@@ -59,6 +59,7 @@ const RouteContent = ({ loadProfile, profile, myQuotes, handleMyQuote }) => (
                 <Settings 
                     {...props}
                     profile={profile}
+                    reloadProfile={reloadProfile}
                 />
         }
         />

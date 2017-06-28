@@ -28,13 +28,7 @@ class App extends Component {
 
     componentDidMount() {
         if(Auth.isAuthenticate()) {
-            api.getUser().then((response) => {
-                this.setState(() => {
-                    return {
-                        profile: response.data
-                    }
-                })
-            })
+            this.reloadProfile()
 
             api.getUserQuote().then((response) => {
                 let reverseResponse = response.reverse()
@@ -50,6 +44,14 @@ class App extends Component {
     loadProfile(profile) {
         this.setState({
             profile
+        })
+    }
+
+    reloadProfile() {
+        api.getUser().then((response) => {
+            this.setState({
+                profile: response.data
+            })
         })
     }
 
@@ -75,6 +77,7 @@ class App extends Component {
                             profile={this.state.profile}
                             myQuotes={this.state.myQuotes}
                             handleMyQuote={this.updateMyQuotes}
+                            reloadProfile={this.reloadProfile}
                         />
                         <Footer />
                     </div>
