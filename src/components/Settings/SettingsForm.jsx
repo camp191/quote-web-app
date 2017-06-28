@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Paper from 'material-ui/Paper'
+import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 
@@ -38,7 +40,15 @@ const styles = {
     }
 }
 
-const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
+const SettingsForm = ({
+            profile, 
+            profileEdit, 
+            error, 
+            handleProfileInput, 
+            onSubmit,
+            profileModal,
+            handleProfileClose
+        }) => (
     <div style={styles.wrapper}>
         <Paper style={styles.paper} zDepth={2}>
             <form>
@@ -67,6 +77,7 @@ const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
                             name="name"
                             onChange={handleProfileInput}
                             style={styles.textField}
+                            errorText={error}
                             hintText="Adam Goodman"
                             value={profileEdit.name ? profileEdit.name : undefined}
                         />
@@ -120,6 +131,20 @@ const SettingsForm = ({profile, profileEdit, handleProfileInput, onSubmit}) => (
                 </div>
             </form>
         </Paper>
+        <div>
+            <Dialog
+            actions={[<FlatButton
+                        label="Discard"
+                        primary={true}
+                        onTouchTap={handleProfileClose}
+                    />]}
+            modal={false}
+            open={profileModal}
+            onRequestClose={handleProfileClose}
+            >
+                Successfully to save your profile
+            </Dialog>
+        </div>
     </div>
 )
 
@@ -127,7 +152,10 @@ SettingsForm.propTypes = {
     profile: PropTypes.object.isRequired,
     profileEdit: PropTypes.object.isRequired,
     handleProfileInput: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    error: PropTypes.string.isRequired,
+    profileModal: PropTypes.bool.isRequired,
+    handleProfileClose: PropTypes.func.isRequired
 }
 
 export default SettingsForm

@@ -12,6 +12,8 @@ class Settings extends Component {
 
         if(this.props.profile !== null) {
             this.state = {
+                profileModal: false,
+                error: '',
                 profileEdit: {
                     name: this.props.profile.name,
                     sex: this.props.profile.sex,
@@ -29,20 +31,37 @@ class Settings extends Component {
         const field = e.target.name
         const profile = this.state.profileEdit
         profile[field] = value
+        
+        if(field === 'name' && profile[field].length > 5) {
+            this.setState({
+                error: ''
+            })
+        }
 
         this.setState({
             profileEdit: profile
         })
     }
 
+    handleProfileOpen = () => {
+        this.setState({profileModal: true})
+    }
+
+    handleProfileClose = () => {
+        this.setState({profileModal: false})
+        window.location.reload()
+    }
+
     processForm = (e) => {
         e.preventDefault()
 
-        if(this.state.profileEdit.name === '') {
-            console.log("Error Please name your name")
+        if(this.state.profileEdit.name.length <= 5) {
+            this.setState({
+                error: 'Name must be than 5 characters'
+            })
         } else {
             api.updateUser(this.state.profileEdit).then((response) => {
-                window.location.reload()
+                this.handleProfileOpen()
             })
         }
     }
@@ -71,6 +90,9 @@ class Settings extends Component {
                             handleProfileInput={this.handleProfileInput}
                             onSubmit={this.processForm}
                             profileEdit={this.state.profileEdit}
+                            error={this.state.error}
+                            profileModal={this.state.profileModal}
+                            handleProfileClose={this.handleProfileClose}
                         /> :
                         "Hello"
                     }
