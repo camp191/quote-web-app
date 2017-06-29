@@ -62,13 +62,28 @@ export default {
     },
 
     updateUser: (user) => {
-        console.log(user)
         let encodeURI = window.encodeURI( host + 'user/' + user.id )
         
         return axios.patch(encodeURI, {
             'name': user.name,
             'description': user.description,
             'sex': user.sex
+        },{
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
+    },
+
+    updateImage: (id, imageURL) => {
+        let encodeURI = window.encodeURI( host + 'user/image/' + id )
+
+        return axios.patch(encodeURI, {
+            'image': imageURL
         },{
             headers: {
                 'x-auth': Auth.getToken()

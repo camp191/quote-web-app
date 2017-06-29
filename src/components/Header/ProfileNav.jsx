@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Avatar from '../../images/Avatar.png'
 
 const imageStyle = {
+    width: '100%',
     padding: '20px 45px'
 }
 
@@ -30,7 +31,11 @@ const ProfileNav = ({profile}) => (
                     alt="avatar"
                     style={imageStyle}
                 />
-            : 'Hello' }
+            : <img 
+                    src={profile.image} 
+                    alt="avatar"
+                    style={imageStyle}
+                /> }
         <h1 style={nameStyle}>
             {profile.name}
         </h1>

@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import PictureUploadForm from './PictureUploadForm'
+
 import Paper from 'material-ui/Paper'
 import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
@@ -55,16 +57,12 @@ const SettingsForm = ({
                 <div>
                     <h2 style={styles.header}>Avatar</h2>
                     <h3>Profile Picture</h3>
-                    <input 
-                        name="image"
-                        type="file" 
-                    />
-                    <RaisedButton
-                        type="submit"
-                        style={styles.submitBtn}
-                        label="Submit" 
-                        fullWidth={true}
-                        primary={true} />
+                    <div>
+                        <PictureUploadForm 
+                            profile={profile}
+                        />
+                    </div>
+                    
                     <hr/>
                 </div>
             </form>

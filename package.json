@@ -13,10 +13,12 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-dropzone": "^3.13.3",
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^4.1.1",
     "react-slick": "^0.14.11",
     "react-tap-event-plugin": "^2.0.1",
+    "superagent": "^3.5.2",
     "validator": "^7.0.0"
   },
   "devDependencies": {
