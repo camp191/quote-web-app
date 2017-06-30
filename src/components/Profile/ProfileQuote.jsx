@@ -23,6 +23,21 @@ function timeConverter(timeStamp){
     return `${date} ${month} ${year} ${hour}:${min}`
 }
 
+function quoteType(quote) {
+    switch (quote) {
+        case 1:
+            return 'General'
+        case 2:
+            return 'Love'
+        case 3:
+            return 'Work'
+        case 4:
+            return 'Inspiration'
+        default:
+            return 'Other'
+    }
+}
+
 const ProfileQuoteList = ({
                         quote, 
                         profile, 
@@ -45,7 +60,7 @@ const ProfileQuoteList = ({
                 {quote.quote}
             </CardText>
             <CardText style={{fontSize:'16px', fontStyle:'italic', fontWeight:'100'}}>
-                -- {quote.quoteBy}
+                -- {quote.quoteBy} -- <span style={{marginLeft: '10px'}}>Type: {quoteType(quote.type)}</span>
             </CardText>
             <CardActions expandable={true} style={{textAlign: 'center'}}>
                 <FlatButton label="Edit" />

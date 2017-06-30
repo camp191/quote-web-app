@@ -125,9 +125,35 @@ export default {
         })
     },
 
+    getAllQuotes: (quotes) => {
+        let encodeURI = window.encodeURI( host + 'quotes/all')
+        return axios.get(encodeURI, {
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response.data.quote
+        }).catch((e) => {
+            return e.response
+        })
+    },
+
     deleteQuote: (id) => {
         let encodeURI = window.encodeURI( host + 'quotes/' + id )
         return axios.delete(encodeURI, {
+            headers: {
+                'x-auth': Auth.getToken()
+            }
+        }).then((response) => {
+            return response
+        }).catch((e) => {
+            return e.response
+        })
+    },
+
+    getAllUsers: (id) => {
+        let encodeURI = window.encodeURI( host + 'user/' + id )
+        return axios.get(encodeURI, {
             headers: {
                 'x-auth': Auth.getToken()
             }

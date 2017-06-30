@@ -19,7 +19,8 @@ class App extends Component {
 
         this.state = {
             profile: null,
-            myQuotes: []
+            myQuotes: [],
+            allQuotes: []
         }
 
         this.loadProfile = this.loadProfile.bind(this)
@@ -35,6 +36,15 @@ class App extends Component {
                 this.setState(() => {
                     return {
                         myQuotes: reverseResponse
+                    }
+                })
+            })
+
+            api.getAllQuotes().then((response) => {
+                let reverseResponse = response.reverse()
+                this.setState(() => {
+                    return {
+                        allQuotes: reverseResponse
                     }
                 })
             })
@@ -61,6 +71,11 @@ class App extends Component {
             let reverseResponse = response.reverse()
             this.setState({myQuotes: reverseResponse})
         })
+
+        api.getAllQuotes().then((response) => {
+            let reverseResponse = response.reverse()
+            this.setState({allQuotes: reverseResponse})
+        })
     }
 
     render() {
@@ -76,6 +91,7 @@ class App extends Component {
                             loadProfile={this.loadProfile}
                             profile={this.state.profile}
                             myQuotes={this.state.myQuotes}
+                            allQuotes={this.state.allQuotes}
                             handleMyQuote={this.updateMyQuotes}
                             reloadProfile={this.reloadProfile}
                         />
