@@ -65,6 +65,7 @@ class Main extends Component {
                             loginRedirect={this.loginRedirect}
                             tabs={this.state.tabs}
                             tabChange={this.tabChange}
+                            handleMyQuote={this.props.handleMyQuote}
                         />
                     </div>
                 </div>

@@ -16,7 +16,8 @@ const RouteContent = ({ loadProfile, profile, myQuotes, allQuotes, handleMyQuote
             component={(props) => 
                 <Main 
                     {...props} 
-                    loadProfile={loadProfile} 
+                    loadProfile={loadProfile}
+                    handleMyQuote={handleMyQuote}
                 />
             } 
         />

@@ -39,6 +39,8 @@ class LoginPage extends Component {
                         return this.props.loadProfile(response.data)
                     })
 
+                    this.props.handleMyQuote()
+
                     this.props.loginRedirect()
                 } else {
                     this.setState({

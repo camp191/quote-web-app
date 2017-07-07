@@ -15,7 +15,7 @@ const style = {
   borderRadius: 5
 };
 
-const Member = ({loginRedirect, tabs, tabChange, loadProfile}) => (
+const Member = ({loginRedirect, tabs, tabChange, loadProfile, handleMyQuote}) => (
     <div>
         <Paper style={style} zDepth={2} >
             <Tabs
@@ -40,6 +40,7 @@ const Member = ({loginRedirect, tabs, tabChange, loadProfile}) => (
                     <LoginPage
                         loadProfile={loadProfile} 
                         loginRedirect={loginRedirect}
+                        handleMyQuote={handleMyQuote}
                     />
                 </div>
                 </Tab>
