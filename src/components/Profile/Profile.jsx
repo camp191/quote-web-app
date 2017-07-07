@@ -15,7 +15,6 @@ class Profile extends Component {
 
         this.state = {
             addModal: false,
-            deleteModal: false,
             addLoading: false,
             error: '',
             quote: {
@@ -68,25 +67,6 @@ class Profile extends Component {
 
     handleAddModalClose = () => {
         this.setState({addModal: false})
-        this.props.handleMyQuote()
-    }
-
-    handleDeleteModalOpen = () => {
-        this.setState({deleteModal: true})
-    }
-
-    handleDeleteModalClose = () => {
-        this.setState({deleteModal: false})
-    }
-
-    handleDeleteQuote = (id) => {
-        api.deleteQuote(id)
-            .then((res) => {
-                console.log(res)
-            })
-        
-        this.setState({deleteModal: false})
-
         this.props.handleMyQuote()
     }
 
@@ -178,10 +158,8 @@ class Profile extends Component {
                         <ProfileQuote
                             myQuotes={this.props.myQuotes}
                             profile={this.props.profile}
-                            handleDeleteModalOpen={this.handleDeleteModalOpen}
-                            handleDeleteModalClose={this.handleDeleteModalClose}
-                            handleDeleteQuote={this.handleDeleteQuote}
                             isDeleteModalOpen={this.state.deleteModal}
+                            handleMyQuote={this.props.handleMyQuote}
                         />
                     }
                 </div>

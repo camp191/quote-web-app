@@ -27,6 +27,7 @@ class Home extends Component {
                 }}>
                     All Quotes
                 </h1>
+                <hr/>
                 {this.props.allQuotes.length === 0 ?
                     <div style={{textAlign:'center', marginTop:'30px'}}>
                         <CircularProgress 

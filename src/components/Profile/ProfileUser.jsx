@@ -19,7 +19,8 @@ const description = {
 }
 
 const profileBox = {
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: '25px'
 }
 
 const icon = {
@@ -56,29 +57,6 @@ const ProfileUser = ({profile}) => (
         <h2 style={description}>
             {profile.description ? profile.description : ' " No Description... "'}
         </h2>
-        <h3>
-            <a 
-                href="http://www.facebook.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <FontAwesome
-                    className='fa-facebook-square'
-                    name='fa-facebook-square'
-                    style={icon}
-                />
-            </a>
-            <FontAwesome
-                className='fa-instagram'
-                name='fa-instagram'
-                style={icon}
-            />
-            <FontAwesome
-                className='fa-twitter'
-                name='fa-twitter'
-                style={icon}
-            />
-        </h3>
     </div>
 )
 
