@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import CircularProgress from 'material-ui/CircularProgress'
 
 import SettingsForm from './SettingsForm'
 
@@ -94,7 +95,12 @@ class Settings extends Component {
                             profileModal={this.state.profileModal}
                             handleProfileClose={this.handleProfileClose}
                         /> :
-                        "Hello"
+                        <div style={{textAlign:'center', marginTop:'30px'}}>
+                            <CircularProgress 
+                                size={80} 
+                                thickness={5}       
+                            />
+                        </div>
                     }
                 </div>
             </div> 

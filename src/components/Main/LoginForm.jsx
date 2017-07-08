@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import CircularProgress from 'material-ui/CircularProgress'
 
-const LoginForm = ({ onChange, onSubmit, user, error, isLoading }) => (
+const LoginForm = ({ onChange, onSubmit, user, error, isLoading, tabChange }) => (
     <div style={{margin: "0 40px"}}>
         <p className="member-header">Log in to your Quote account</p>
         <form action="/" onSubmit={onSubmit}>
@@ -46,7 +46,6 @@ const LoginForm = ({ onChange, onSubmit, user, error, isLoading }) => (
                 backgroundColor="#FFAB00"
             />
         </form>
-        <h1 className="member-footer">Don't have an Account ?, Sign up <u>Here</u></h1>
     </div>
 )
 
