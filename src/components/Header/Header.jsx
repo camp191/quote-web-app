@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import HeaderNav from './../components/Header/HeaderNav'
-import api from './../utils/api'
-import Auth from './../modules/Auth'
+import HeaderNav from './HeaderNav'
+import api from './../../utils/api.js'
+import Auth from './../../modules/Auth.js'
 
 class Header extends Component {
     constructor(props) {

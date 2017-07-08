@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import api from './../utils/api'
-import LoginForm from './../components/Main/LoginForm'
-import Auth from './../modules/Auth'
+import api from './../../utils/api.js'
+import LoginForm from './LoginForm'
+import Auth from './../../modules/Auth.js'
 
 class LoginPage extends Component {
     constructor(props) {

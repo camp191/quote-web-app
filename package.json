@@ -9,7 +9,6 @@
     "concurrently": "^3.4.0",
     "font-awesome": "^4.7.0",
     "material-ui": "^0.18.3",
-    "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

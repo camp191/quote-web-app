@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom' 
-import ExampleSlider from './../components/Main/ExampleSlider'
-import Member from './../components/Main/Member'
+import ExampleSlider from './ExampleSlider'
+import Member from './Member'
 
-import Auth from './../modules/Auth'
+import Auth from './../../modules/Auth.js'
 
 class Main extends Component {
     constructor(props) {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Paper from 'material-ui/Paper';
 
-import SignupPage from '../../containers/SignupPage'
-import LoginPage from '../../containers/LoginPage'
+import SignupPage from './SignupPage'
+import LoginPage from './LoginPage'
 
 const style = {
   height: 475,

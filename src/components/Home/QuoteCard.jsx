@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 
 import Avatar from '../../images/Avatar.png'
-import api from './../../utils/api'
+import api from './../../utils/api.js'
 
 class QuoteCard extends Component {
     constructor(props) {

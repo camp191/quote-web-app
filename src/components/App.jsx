@@ -6,7 +6,7 @@ import 'bulma/css/bulma.css'
 import '../css/Style.css'
 import 'font-awesome/css/font-awesome.css'
 
-import Header from './../containers/Header'
+import Header from './Header/Header'
 import Footer from './Footer'
 import Route from './RouteContent'
 
